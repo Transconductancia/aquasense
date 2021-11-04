@@ -1,0 +1,88 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}Inicio AquaSense{% endblock title %}
+
+{% block head %}
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaSense</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
+<!-- Style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="base/style.css") }}">
+{% endblock head %}
+
+{% block navbar %}
+
+    <nav class="navbar navbar-expand-lg navbar-mainbg">
+    <!-- Logo -->
+    <div class="navbar-tittle">
+        <div class="navbar-logo-background">
+            <img class="navbar-logo" src="{{ url_for('static', filename='base/logo.png') }}" alt="Aquasense Logo">
+        </div>
+    <a class="navbar-brand" href="#">AquaSense</a>
+    </div>
+    <!-- Collapse Button -->
+    <button 
+      class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars text-white"></i>
+    </button>
+    <!-- Links -->
+    <div 
+      class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <!-- For Styling -->
+            <div class="hori-selector">
+              <div class="left"></div>
+              <div class="right"></div>
+            </div>
+            <!-- Nav Links -->
+            <li class="nav-item">
+                <a 
+                  class="nav-link" href="#Dashboard">
+                  <i 
+                    class="fas fa-tachometer-alt">
+                  </i>Inicio
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a 
+                  class="nav-link" href="#Address">
+                  <i 
+                    class="far fa-address-book">
+                  </i>Usuarios
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                  class="nav-link" href="#Charts">
+                  <i 
+                    class="far fa-chart-bar">
+                  </i>Graficas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                  class="nav-link" href="#Calender">
+                  <i 
+                    class="far fa-calendar-alt">
+                  </i>Calendario
+                </a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+{% endblock navbar %}
+
+{% block content %}
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='base/script.js') }}"></script>
+{% endblock scripts %}
