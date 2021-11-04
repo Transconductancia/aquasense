@@ -6,4 +6,8 @@ bootstrap = Bootstrap(app)
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    return render_template('index.html', inicio="active")
+
+@app.route('/graficas')
+def graficas():
+    return render_template('graficas.html', graficas="active")

@@ -1,5 +1,4 @@
 {% extends 'bootstrap/base.html' %}
-{% block title %}Inicio AquaSense{% endblock title %}
 
 {% block head %}
 <meta charset="UTF-8">
@@ -40,15 +39,15 @@
               <div class="right"></div>
             </div>
             <!-- Nav Links -->
-            <li class="nav-item">
+            <li class="nav-item {{inicio}}">
                 <a 
-                  class="nav-link" href="#Dashboard">
+                  class="nav-link" href="/">
                   <i 
                     class="fas fa-tachometer-alt">
                   </i>Inicio
                 </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a 
                   class="nav-link" href="#Address">
                   <i 
@@ -56,9 +55,9 @@
                   </i>Usuarios
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{graficas}}">
                 <a 
-                  class="nav-link" href="#Charts">
+                  class="nav-link" href="/graficas">
                   <i 
                     class="far fa-chart-bar">
                   </i>Graficas
@@ -78,7 +77,11 @@
 {% endblock navbar %}
 
 {% block content %}
-
+ <div class="container">
+    {% block page_content %}
+    
+    {% endblock page_content %}
+ </div>
 {% endblock content %}
 
 {% block scripts %}

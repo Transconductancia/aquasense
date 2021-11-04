@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <canvas id="myChart" width="5" height="5" ></canvas>
+{% endblock page_content %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <script src="{{ url_for('static', filename='graficas/chart.js') }}"></script>
+{% endblock scripts %}
