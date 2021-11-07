@@ -45,7 +45,7 @@ def flujo_tiempo_real():
     
     enviar = _datos(cur)
     
-    return Response(stream_with_context(enviar), mimetype='text/event_stream')
+    return Response(stream_with_context(enviar), mimetype='text/event-stream')
 
 
 if __name__ == "__main__":

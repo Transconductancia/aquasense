@@ -2,6 +2,17 @@ Chart.defaults.global.responsive = true;
 Chart.defaults.global.legend.display = false;
 
 $(document).ready(function () {
+    const plugin = {
+        id: 'custom_canvas_background_color',
+        beforeDraw: (chart) => {
+          const ctx = chart.canvas.getContext('2d');
+          ctx.save();
+          ctx.globalCompositeOperation = 'destination-over';
+          ctx.fillStyle = 'rgb(239,239,239)';
+          ctx.fillRect(0, 0, chart.width, chart.height);
+          ctx.restore();  }
+      };
+
     const config = {
         type: 'line',
         data: {
@@ -14,6 +25,7 @@ $(document).ready(function () {
                 fill: false,
             }],
         },
+        plugins: [plugin],
         options: {
             responsive: true,
             title: {
@@ -50,18 +62,19 @@ $(document).ready(function () {
 
     const lineChart = new Chart(context, config);
 
-    const source = new EventSource("/datos_monitoreo");
+    const source = new EventSource("/flujo_tiempo_real");
 
     source.onmessage = function (event) {
         const data = JSON.parse(event.data);
 
-        if (config.data.labels.length == 20) {
+        if (config.data.labels.length == 5) {
             config.data.labels.shift();
             config.data.datasets[0].data.shift();
         }
 
         config.data.labels.push(data.fecha);
         config.data.datasets[0].data.push(data.numero1);
+        document.getElementById("flujo").innerHTML=data.numero1 + "L/m";
         lineChart.update();
     }
 });

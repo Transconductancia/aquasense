@@ -3,3 +3,7 @@ img {
     max-height: 400px;
     display: block;
 }
+
+.card {
+    background-color: #EFEFEF;
+}
