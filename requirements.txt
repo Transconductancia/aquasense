@@ -1,2 +1,5 @@
 Flask==2.0.2
 Flask-Bootstrap==3.3.7.1
+Flask-MySQL==1.5.2
+python-decouple==3.5
+python-dotenv==0.19.1
