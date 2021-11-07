@@ -1,11 +1,192 @@
 {% extends 'base.html' %}
-
 {% block page_content %}
-    <canvas id="myChart" width="5" height="5" ></canvas>
+    <div class="row">
+        <div class="col-md-12 pt-4 pb-4">
+            <h3 class="text-center">Gráficas acumuladas</h3>
+        </div>
+
+        <div class="col-md-6 pt-4 pb-4">
+            <h4 class="text-center">Flujo por Dia</h4>
+            <div class="card"> 
+                <div class="card-body"> 
+                    <canvas id="grafica_flujo_dia" width="500" height="400"></canvas>
+                </div> 
+            </div> 
+        </div>
+
+        <div class="col-md-6 pt-4 pb-4">
+            <h4 class="text-center">Dispersión del flujo Máximo</h4>
+            <div class="card"> 
+                <div class="card-body"> 
+                    <canvas id="dispersion" width="500" height="400"></canvas>
+                </div> 
+            </div> 
+        </div>
+        <div class="col-md-12 pt-4 pb-4">
+            <h4 class="text-center">Flujo máximo por semana</h4>
+            <div class="card"> 
+                <div class="card-body"> 
+                    <canvas id="chartJSContainer" width="500" height="400"></canvas>
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+    <script>
+        Chart.defaults.global.responsive = true;
+        Chart.defaults.global.legend.display = false;
+        console.log("hola")
+
+        var chartData = {
+            labels : [{% for dato in flujo_dia.keys() %}
+                "{{ dato }}",
+                {% endfor %}],
+            datasets : [{
+                label: 'Flujo',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(114,103,167,0.2)",
+                borderColor: "rgba(107,76,154,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'mister',
+                pointBorderColor: "rgba(107,76,154,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(107,76,154,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data : [{% for dato in flujo_dia.values() %}
+                        {{ dato }},
+                    {% endfor %}],
+                spanGaps: false
+            }]
+        };
+            
+        var ctx = document.getElementById("grafica_flujo_dia").getContext("2d");
+        console.log("hola")
+
+        var acumulados1 = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                    legend: {
+                        labels: {
+                            usePointStyle: false
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Hora'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Flujo de agua'
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
+        
+    <script>
+        Chart.defaults.global.responsive = true;
+        Chart.defaults.global.legend.display = false;
+
+        var chartData = {
+            datasets : [{
+                label: 'Flujo',
+                data : [
+                {% for fecha, dato in flujo_semana.items() %}
+                    {
+                        x: "{{ fecha }}",
+                        y: {{ dato }}
+                    },
+               {% endfor %}],
+                backgroundColor: 'rgb(255, 99, 132)'
+            }],
+        };
+            
+        var ctx = document.getElementById("dispersion").getContext("2d");
+
+        var acumulados1 = new Chart(ctx, {
+            type: 'scatter',
+            data: chartData,
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    },
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                        unit: 'day'
+                        },
+                      
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Flujo de agua'
+                        }
+                    }],
+                }
+            }
+        });
+        console.log(chartData.datasets.data)
+    </script>
+
+    <script>
+        var options = {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: "Server 2",
+      backgroundColor: "rgba(196, 93, 105, 0.3)",
+      showLine: true,
+      data: [{
+          x: '2018-03-10',
+          y: "15.375"
+        },
+        {
+          x: '2018-03-15',
+          y: "25.375"
+        }
+      ]
+    }]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day'
+        }
+      }],
+      yAxes: [{}]
+    }
+  }
+}
+
+var ctx = document.getElementById('chartJSContainer').getContext('2d');
+new Chart(ctx, options);
+    </script>
 {% endblock page_content %}
+
 
 {% block scripts %}
     {{ super() }}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
-    <script src="{{ url_for('static', filename='graficas/chart.js') }}"></script>
 {% endblock scripts %}
+
