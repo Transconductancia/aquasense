@@ -16,11 +16,22 @@ app.config['MYSQL_DATABASE_PASSWORD'] = config('PASSWORD_DB')
 app.config['MYSQL_DATABASE_DB'] = config('NAME_DB')
 mysql.init_app(app)
 
+def conversion_horas(tup):
+    dic = {}
+    for x, y in tup:
+        dic.setdefault(y.strftime("%H:%M:%S"), x)
+    return dic
+
+def conversion_dias(tup):
+    dic = {}
+    for x, y in tup:
+        dic.setdefault(y.strftime("%Y-%m-%d"), x)
+    return dic
+
 def _datos(cur):
     cur.execute(
         'SELECT fecha_hora, agua_flujo FROM datos_dia WHERE id = (SELECT MAX(id) FROM datos_dia)')
     datos_tiempo_real = cur.fetchall()
-    print(datos_tiempo_real[0][0].strftime("%d/%m/%Y %H:%M:%S"))
     json_data = json.dumps(
         {'fecha': datos_tiempo_real[0][0].strftime("%d/%m/%Y %H:%M:%S"), 'numero1': datos_tiempo_real[0][1]})
 
@@ -33,7 +44,18 @@ def index():
 
 @app.route('/graficas')
 def graficas():
-    return render_template('graficas.html', graficas="active")
+    cur = mysql.get_db().cursor()
+    cur.execute(
+        "SELECT  agua_flujo, fecha_hora FROM datos_dia")
+    valores = cur.fetchall()
+    flujo_dia = conversion_horas(valores)
+    
+    cur.execute(
+        "SELECT  maximo_flujo, fecha FROM datos_semana")
+    valores = cur.fetchall()
+    flujo_semana= conversion_dias(valores)
+    
+    return render_template('graficas.html', graficas="active", flujo_dia=flujo_dia, flujo_semana=flujo_semana)
 
 
 @app.route('/tablas')
