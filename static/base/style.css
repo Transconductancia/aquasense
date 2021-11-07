@@ -18,6 +18,10 @@ i {
   margin-right: 10px;
 }
 
+#main-container{
+  min-height: 57vh;
+}
+
 .navbar-tittle{
     display: flex;
     flex-direction: row;
@@ -173,4 +177,22 @@ i {
     bottom: -25px;
     left: -25px;
   }
+}
+
+footer {
+  background-color: var(--dark-blue);
+}
+
+i {
+  color: var(--yellow);
+}
+
+#copy {
+  background-color: #0A1528;
+  color: var(--white);
+}
+
+#copy > a {
+  text-decoration: none;
+  color: var(--white);
 }

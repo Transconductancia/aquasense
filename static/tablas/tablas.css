@@ -1,0 +1,13 @@
+.table{
+    margin-top: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.table thead th{
+  background-color: #0A1931;
+  color: #FFC947;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #185ADB;
+}
