@@ -15,5 +15,10 @@ def graficas():
     return render_template('graficas.html', graficas="active")
 
 
+@app.route('/tablas')
+def tablas():
+    return render_template('tablas.html', tablas="active")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
