@@ -12,6 +12,12 @@
   href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
 <!-- Style.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename="base/style.css") }}">
+
+<!--Chartjs-->
+<!-- ChartJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+
 {% endblock head %}
 
 {% block navbar %}
@@ -47,14 +53,6 @@
                   </i>Inicio
                 </a>
             </li>
-            <li class="nav-item">
-                <a 
-                  class="nav-link" href="#Address">
-                  <i 
-                    class="far fa-address-book">
-                  </i>Usuarios
-                </a>
-            </li>
             <li class="nav-item {{graficas}}">
                 <a 
                   class="nav-link" href="/graficas">
@@ -85,7 +83,7 @@
 {% endblock navbar %}
 
 {% block content %}
- <div class="container" id="main-container">
+ <div class="container mb-4" id="main-container">
     {% block page_content %}
     
     {% endblock page_content %}

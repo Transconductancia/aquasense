@@ -3,6 +3,9 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    animation: move 500ms linear forwards;
+    filter: opacity(0);
+    transform: translateY(50px);
 }
 .table thead th{
   background-color: #0A1931;
@@ -10,4 +13,13 @@
 }
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #185ADB;
+}
+@keyframes move {
+  0%{
+    filter: opacity(0);
+  }
+  100%{
+    transform: translateY(0);
+    filter: opacity(1);
+  }
 }
