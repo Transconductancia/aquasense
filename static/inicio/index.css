@@ -7,3 +7,15 @@ img {
 .card {
     background-color: #EFEFEF;
 }
+
+#boton{
+    border: 4px #32A2B8 solid;
+    background-color: #32A2B8;
+    color: var(--white);
+}
+
+#boton:hover{
+    border: 4px var(--dark-blue) solid;
+    background-color: var(--dark-blue);
+    color: var(--yellow);
+}
