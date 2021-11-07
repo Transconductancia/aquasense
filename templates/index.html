@@ -6,33 +6,33 @@
 {% endblock %}
 
 {% block page_content %}
-  <header class="">
-      <div class="container mt-2">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol>
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{url_for('static', filename='inicio/1.jpg')}}" alt="Los Angeles" class="d-block w-100">
-              <div class="carousel-caption">
-                <h3>Aquasense</h3>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias iusto repellat esse voluptatum repellendus in. Ab, quam, commodi, saepe sapiente placeat modi voluptatem illo nobis perspiciatis qui incidunt inventore quod?</p>
+  <header class="mt-2">
+      <div class="container">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{url_for('static', filename='inicio/tank.jpg')}}" alt="Los Angeles" class="d-block w-100">
+                <div class="carousel-caption">
+                  <h3>Aquasensem Solution</h3>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias iusto repellat esse voluptatum repellendus in. Ab, quam, commodi, saepe sapiente placeat modi voluptatem illo nobis perspiciatis qui incidunt inventore quod?</p>
+                </div>
               </div>
-            </div>
 
-            <div class="carousel-item active">
-              <img src="{{url_for('static', filename='inicio/2.jpg')}}" alt="Chicago" class="d-block w-100">
-            </div>
+              <div class="carousel-item">
+                <img src="{{url_for('static', filename='inicio/circuit.jpg')}}" alt="Chicago" class="d-block w-100">
+                <div class="carousel-caption">
+                  <h3>Aquasense Technology</h3>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias iusto repellat esse voluptatum repellendus in. Ab, quam, commodi, saepe sapiente placeat modi voluptatem illo nobis perspiciatis qui incidunt inventore quod?</p>
+                </div>
+              </div>
 
-            <div class="carousel-item">
-              <img src="{{url_for('static', filename='inicio/3.jpg')}}" alt="New York" class="d-block w-100">
             </div>
-          </div>
           </div>
 
           <!-- Left and right controls -->
@@ -44,28 +44,29 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
           </a>
-      </div>
 
-      <div class="align-items-center mt-2">
-        <!-- Column 1-->
-        <div class="col-md-6">
-          <h1 class="mb-4 font-weight-bold">We build
-            <span class="text-info">website</span><br>that build your business
-          </h1>
-          <p class="mb-4 pb-2 ">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vitae, culpa qui officia deserunt laborum fuga similique mollit id quos aperiam proident non ut rerum debitis.
-          </p>
-          <div>
-            <a href="#contact" class="text-center btn btn-outline-dark btn-lg btn-block">Contact Us</a>
+          <div class="row align-items-center mt-3">
+          <!-- Column 1-->
+          <div class="col-md-6">
+            <h1 class="mb-4 font-weight-bold">We build
+              <span class="text-info">website</span><br>that build your business
+            </h1>
+            <p class="mb-4 pb-2 ">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vitae, culpa qui officia deserunt laborum fuga similique mollit id quos aperiam proident non ut rerum debitis.
+            </p>
+            <div>
+              <a href="#contact" class="text-center btn btn-outline-dark btn-lg btn-block">Contact Us</a>
+            </div>
           </div>
-        </div>
-        <!-- Column 1 -->
+          <!-- Column 1 -->
 
-        <!-- Column 2 -->
-        <div class="col-md-6 d-none d-sm-none d-md-block">
-          <img src="{{ url_for('static', filename='inicio/work.png') }}" alt="tours pics" class="img-fluid">
+          <!-- Column 2 -->
+          <div class="col-md-6 d-none d-sm-none d-md-block">
+            <img src="{{ url_for('static', filename='inicio/work.png') }}" alt="tours pics" class="img-fluid">
+          </div>
+          <!-- Column 2 -->
         </div>
-        <!-- Column 2 -->
+
       </div>
   </header>
 {% endblock page_content %}
