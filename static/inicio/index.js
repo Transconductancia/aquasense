@@ -44,14 +44,14 @@ $(document).ready(function () {
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Fecha de adquisición'
+                        labelString: 'Fecha y Hora'
                     }
                 }],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Unidad'
+                        labelString: 'Flujo de agua'
                     }
                 }]
             }
@@ -74,7 +74,7 @@ $(document).ready(function () {
 
         config.data.labels.push(data.fecha);
         config.data.datasets[0].data.push(data.numero1);
-        document.getElementById("flujo").innerHTML=data.numero1 + "L/m";
+        document.getElementById("flujo").innerHTML=data.numero1 + " L/m";
         lineChart.update();
     }
 });
