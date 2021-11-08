@@ -58,9 +58,8 @@ def graficas():
     cur.execute(
         "SELECT maximo_flujo FROM datos_semana WHERE week(fecha)=week(now())")
     valores = cur.fetchall()
-    print(valores)
+
     flujo_semana_actual = [valores[x][0] for x in range(len(valores))]
-    print(flujo_semana_actual)
     
     return render_template('graficas.html', graficas="active",
                            flujo_dia=flujo_dia, flujo_semana=flujo_semana,
@@ -69,7 +68,12 @@ def graficas():
 
 @app.route('/tablas')
 def tablas():
-    return render_template('tablas.html', tablas="active")
+    cur = mysql.get_db().cursor()
+    cur.execute(
+        "SELECT * FROM datos_semana")
+    valores = cur.fetchall()
+    print(valores)
+    return render_template('tablas.html', tablas="active", valores=valores)
 
 @app.route('/flujo_tiempo_real')
 def flujo_tiempo_real():
