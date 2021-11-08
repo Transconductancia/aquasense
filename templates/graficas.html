@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='graficas/graficas.css') }}">
+{% endblock head %}
+
 {% block page_content %}
     <div class="row">
-        <div class="col-md-12 pt-4 pb-4">
+        <div class="col-md-12 pt-5 pb-4">
             <h3 class="text-center">Gráficas acumuladas</h3>
         </div>
 
-        <div class="col-md-6 pt-4 pb-4">
-            <h4 class="text-center">Flujo por Dia</h4>
+        <div class="col-md-6 pt-2 pb-4">
+            <h4 class="text-center mb-3">Flujo por Dia</h4>
             <div class="card"> 
                 <div class="card-body"> 
                     <canvas id="grafica_flujo_dia" width="500" height="400"></canvas>
@@ -14,8 +19,8 @@
             </div> 
         </div>
 
-        <div class="col-md-6 pt-4 pb-4">
-            <h4 class="text-center">Dispersión del flujo Máximo</h4>
+        <div class="col-md-6 pt-2 pb-4">
+            <h4 class="text-center mb-3">Dispersión del flujo Máximo</h4>
             <div class="card"> 
                 <div class="card-body"> 
                     <canvas id="dispersion" width="500" height="400"></canvas>
@@ -23,10 +28,10 @@
             </div> 
         </div>
         <div class="col-md-12 pt-4 pb-4">
-            <h4 class="text-center">Flujo máximo por semana</h4>
+            <h4 class="text-center mb-3">Flujo máximo por semana</h4>
             <div class="card"> 
                 <div class="card-body"> 
-                    <canvas id="chartJSContainer" width="500" height="400"></canvas>
+                    <canvas id="barras_semana" width="500" height="200"></canvas>
                 </div> 
             </div> 
         </div>
@@ -68,7 +73,6 @@
         };
             
         var ctx = document.getElementById("grafica_flujo_dia").getContext("2d");
-        console.log("hola")
 
         var acumulados1 = new Chart(ctx, {
             type: 'line',
@@ -86,6 +90,9 @@
                         scaleLabel: {
                             display: true,
                             labelString: 'Hora'
+                        },
+                        ticks: {
+                            display: false
                         }
                     }],
                     yAxes: [{
@@ -144,43 +151,63 @@
                 }
             }
         });
-        console.log(chartData.datasets.data)
     </script>
 
     <script>
-        var options = {
-  type: 'scatter',
-  data: {
-    datasets: [{
-      label: "Server 2",
-      backgroundColor: "rgba(196, 93, 105, 0.3)",
-      showLine: true,
-      data: [{
-          x: '2018-03-10',
-          y: "15.375"
-        },
-        {
-          x: '2018-03-15',
-          y: "25.375"
-        }
-      ]
-    }]
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        type: 'time',
-        time: {
-          unit: 'day'
-        }
-      }],
-      yAxes: [{}]
-    }
-  }
-}
+        Chart.defaults.global.responsive = true;
+        Chart.defaults.global.legend.display = false;
 
-var ctx = document.getElementById('chartJSContainer').getContext('2d');
-new Chart(ctx, options);
+        var chartData = {
+            labels: ['Domingo', 'Lunes', 'Martes',
+            'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            datasets : [{
+                label: 'Flujo Máximo del Dia',
+                data : 
+                [{% for dato in flujo_semana_actual %}
+                    {{ dato }},
+                {% endfor %}],  
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        var ctx = document.getElementById("barras_semana").getContext("2d");
+
+        var acumulados1 = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0
+                        }
+                    }]
+                },
+                plugins: {
+                    labels: {
+                        render: () => {}
+                    }
+                },
+            },
+        });
     </script>
 {% endblock page_content %}
 
