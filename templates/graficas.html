@@ -40,11 +40,10 @@
     <script>
         Chart.defaults.global.responsive = true;
         Chart.defaults.global.legend.display = false;
-        console.log("hola")
 
         var chartData = {
-            labels : [{% for dato in flujo_dia.keys() %}
-                "{{ dato }}",
+            labels : [{% for dato in flujo_dia %}
+                "{{ dato.1 }}",
                 {% endfor %}],
             datasets : [{
                 label: 'Flujo',
@@ -65,8 +64,8 @@
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data : [{% for dato in flujo_dia.values() %}
-                        {{ dato }},
+                data : [{% for dato in flujo_dia %}
+                        {{ dato.0 }},
                     {% endfor %}],
                 spanGaps: false
             }]
@@ -115,10 +114,10 @@
             datasets : [{
                 label: 'Flujo',
                 data : [
-                {% for fecha, dato in flujo_semana.items() %}
+                {% for dato in flujo_semana %}
                     {
-                        x: "{{ fecha }}",
-                        y: {{ dato }}
+                        x: "{{ dato.1 }}",
+                        y: {{ dato.0 }}
                     },
                {% endfor %}],
                 backgroundColor: 'rgb(255, 99, 132)'
@@ -164,7 +163,7 @@
                 label: 'Flujo Máximo del Dia',
                 data : 
                 [{% for dato in flujo_semana_actual %}
-                    {{ dato }},
+                    {{ dato.0 }},
                 {% endfor %}],  
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

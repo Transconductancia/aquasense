@@ -16,17 +16,6 @@ app.config['MYSQL_DATABASE_PASSWORD'] = config('PASSWORD_DB')
 app.config['MYSQL_DATABASE_DB'] = config('NAME_DB')
 mysql.init_app(app)
 
-def conversion_horas(tup):
-    dic = {}
-    for x, y in tup:
-        dic.setdefault(y.strftime("%H:%M:%S"), x)
-    return dic
-
-def conversion_dias(tup):
-    dic = {}
-    for x, y in tup:
-        dic.setdefault(y.strftime("%Y-%m-%d"), x)
-    return dic
 
 def _datos(cur):
     cur.execute(
@@ -47,19 +36,17 @@ def graficas():
     cur = mysql.get_db().cursor()
     cur.execute(
         "SELECT  agua_flujo, fecha_hora FROM datos_dia")
-    valores = cur.fetchall()
-    flujo_dia = conversion_horas(valores)
-    
+    flujo_dia = cur.fetchall()
+
     cur.execute(
         "SELECT  maximo_flujo, fecha FROM datos_semana")
-    valores = cur.fetchall()
-    flujo_semana = conversion_dias(valores)
+    flujo_semana = cur.fetchall()
     
     cur.execute(
         "SELECT maximo_flujo FROM datos_semana WHERE week(fecha)=week(now())")
-    valores = cur.fetchall()
-
-    flujo_semana_actual = [valores[x][0] for x in range(len(valores))]
+    flujo_semana_actual = cur.fetchall()
+    print(flujo_semana_actual)
+    
     
     return render_template('graficas.html', graficas="active",
                            flujo_dia=flujo_dia, flujo_semana=flujo_semana,
@@ -72,7 +59,6 @@ def tablas():
     cur.execute(
         "SELECT * FROM datos_semana")
     valores = cur.fetchall()
-    print(valores)
     return render_template('tablas.html', tablas="active", valores=valores)
 
 @app.route('/flujo_tiempo_real')
