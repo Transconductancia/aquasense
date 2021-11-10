@@ -18,12 +18,15 @@ mysql.init_app(app)
 
 
 def _datos(cur):
-    cur.execute(
-        'SELECT fecha_hora, agua_flujo FROM datos_dia WHERE id = (SELECT MAX(id) FROM datos_dia)')
-    datos_tiempo_real = cur.fetchall()
-    json_data = json.dumps(
-        {'fecha': datos_tiempo_real[0][0].strftime("%d/%m/%Y %H:%M:%S"), 'numero1': datos_tiempo_real[0][1]})
-
+    try:
+        cur.execute(
+            'SELECT fecha_hora, agua_flujo FROM datos_dia WHERE id = (SELECT MAX(id) FROM datos_dia)')
+        datos_tiempo_real = cur.fetchall()
+        json_data = json.dumps(
+            {'fecha': datos_tiempo_real[0][0].strftime("%d/%m/%Y %H:%M:%S"), 'numero1': datos_tiempo_real[0][1]})
+    except:
+        json_data = json.dumps(
+            {'fecha':  datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'numero1': 0})
     yield f"data:{json_data}\n\n"
 
 @app.route('/')

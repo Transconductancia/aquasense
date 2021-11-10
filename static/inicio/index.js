@@ -67,7 +67,7 @@ $(document).ready(function () {
     source.onmessage = function (event) {
         const data = JSON.parse(event.data);
 
-        if (config.data.labels.length == 5) {
+        if (config.data.labels.length == 20) {
             config.data.labels.shift();
             config.data.datasets[0].data.shift();
         }
