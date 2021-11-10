@@ -81,7 +81,12 @@ i {
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
 }
-#navbarSupportedContent > ul > li.active > a {
+#navbarSupportedContent > ul > li.active > a{
+  color: var(--dark-blue);
+  background-color: transparent;
+  transition: all 0.7s;
+}
+#navbarSupportedContent > ul > li.active > a > i{
   color: var(--dark-blue);
   background-color: transparent;
   transition: all 0.7s;
