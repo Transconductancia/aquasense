@@ -45,6 +45,9 @@ $(document).ready(function () {
                     scaleLabel: {
                         display: true,
                         labelString: 'Fecha y Hora'
+                    },
+                    ticks: {
+                        display: false
                     }
                 }],
                 yAxes: [{
