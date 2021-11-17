@@ -19,7 +19,7 @@ i {
 }
 
 #main-container{
-  min-height: 57vh;
+  min-height: 75vh;
 }
 
 .navbar-tittle{
@@ -200,4 +200,8 @@ i {
 #copy > a {
   text-decoration: none;
   color: var(--white);
+}
+
+.navbar-logo-background:hover{
+  text-decoration: none;
 }

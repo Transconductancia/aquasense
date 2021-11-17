@@ -72,6 +72,15 @@ def flujo_tiempo_real():
     
     return Response(stream_with_context(enviar), mimetype='text/event-stream')
 
+@app.route('/predicciones')
+def predicciones():
+    cur = mysql.get_db().cursor()
+    cur.execute(
+        "SELECT * FROM datos_prediction")
+    valores = cur.fetchall()
+
+    return render_template('predicciones.html', predicciones="active", valores=valores)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
