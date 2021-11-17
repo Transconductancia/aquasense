@@ -86,6 +86,9 @@
                 scales: {
                     xAxes: [{
                         display: true,
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        },
                         scaleLabel: {
                             display: true,
                             labelString: 'Hora'
@@ -98,7 +101,7 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Flujo de agua'
+                            labelString: 'Flujo de agua (L/min)'
                         }
                     }]
                 },
@@ -135,6 +138,13 @@
                         type: 'linear',
                         position: 'bottom'
                     },
+                    yAxes:[{
+                        display: true,
+                        scaleLabel:{
+                            display: true,
+                            labelString: 'Flujo de agua (L/min)'
+                        }
+                    }],
                     xAxes: [{
                         type: 'time',
                         time: {
@@ -144,7 +154,7 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Flujo de agua'
+                            labelString: 'Fecha'
                         }
                     }],
                 }
@@ -194,9 +204,22 @@
             data: chartData,
             options: {
                 scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Dias de la semana'
+                        }
+                    }],
                     yAxes: [{
                         ticks: {
                             min: 0
+                        },
+                        display: true,
+
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Flujo de agua (L/min)'
                         }
                     }]
                 },

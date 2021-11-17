@@ -54,7 +54,7 @@ $(document).ready(function () {
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Flujo de agua'
+                        labelString: 'Flujo de agua (L/min)'
                     }
                 }]
             }
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
         config.data.labels.push(data.fecha);
         config.data.datasets[0].data.push(data.numero1);
-        document.getElementById("flujo").innerHTML=data.numero1 + " L/m";
+        document.getElementById("flujo").innerHTML=data.numero1 + " L/min";
         lineChart.update();
     }
 });

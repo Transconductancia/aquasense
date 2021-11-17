@@ -58,9 +58,21 @@
             data: chartData,
             options: {
                 scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel:{
+                            display: true,
+                            labelString: 'Días de la semana'
+                        }
+                    }],
                     yAxes: [{
                         ticks: {
                             min: 0
+                        },
+                        display: true,
+                        scaleLabel:{
+                            display: true,
+                            labelString: 'Flujo de agua (L/min)'
                         }
                     }]
                 },
