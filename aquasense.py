@@ -38,7 +38,7 @@ def index():
 def graficas():
     cur = mysql.get_db().cursor()
     cur.execute(
-        "SELECT  agua_flujo, fecha_hora FROM datos_dia")
+        "SELECT agua_flujo, fecha_hora FROM datos_dia WHERE fecha_hora > DATE_ADD(NOW(), INTERVAL -10 HOUR)")
     flujo_dia = cur.fetchall()
 
     cur.execute(
