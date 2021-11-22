@@ -1,4 +1,8 @@
+
+document.addEventListener('DOMContentLoaded',test())
+
 function test(){
+
   var tabsNewAnim = $('#navbarSupportedContent');
   var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
   var activeItemNewAnim = tabsNewAnim.find('.active');
@@ -35,4 +39,4 @@ $(window).on('resize', function(){
 });
 $(".navbar-toggler").click(function(){
   setTimeout(function(){ test(); });
-});
+})

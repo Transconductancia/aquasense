@@ -77,19 +77,15 @@ i {
   font-size: 15px;
   display: block;
   padding: 20px 20px;
-  transition-duration: 0.6s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
 }
 #navbarSupportedContent > ul > li.active > a{
   color: var(--dark-blue);
   background-color: transparent;
-  transition: all 0.7s;
 }
 #navbarSupportedContent > ul > li.active > a > i{
   color: var(--dark-blue);
   background-color: transparent;
-  transition: all 0.7s;
 }
 #navbarSupportedContent a:not(:only-child):after {
   content: '\f105';
@@ -102,7 +98,6 @@ i {
   padding-right: 3px;
   vertical-align: middle;
   font-weight: 900;
-  transition: 0.7s;
 }
 #navbarSupportedContent .active > a:not(:only-child):after {
   transform: rotate(90deg);
@@ -114,8 +109,6 @@ i {
   height: 100%;
   top: 0px;
   left: 0px;
-  transition-duration: 0.7s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   background-color: var(--white);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
