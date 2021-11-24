@@ -32,7 +32,7 @@ function test(){
 }
 
 document.addEventListener('DOMContentLoaded', function(event){
-  setTimeout(function(){test(); }, 200)
+  setTimeout(function(){test(); }, 100)
 });
 
 $(window).on('resize', function(){
