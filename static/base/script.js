@@ -30,9 +30,11 @@ function test(){
     });
   });
 }
-$(document).ready(function(){
-  setTimeout(function(){ test(); }, 50);
+
+document.addEventListener('DOMContentLoaded', function(event){
+  setTimeout(function(){test(); }, 200)
 });
+
 $(window).on('resize', function(){
   setTimeout(function(){ test(); }, 50);
 });
