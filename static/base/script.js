@@ -1,5 +1,4 @@
 
-document.addEventListener('DOMContentLoaded',test())
 
 function test(){
 
@@ -10,6 +9,7 @@ function test(){
   var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
   var itemPosNewAnimTop = activeItemNewAnim.position();
   var itemPosNewAnimLeft = activeItemNewAnim.position();
+  console.log(activeItemNewAnim);
   $(".hori-selector").css({
     "top":itemPosNewAnimTop.top + "px", 
     "left":itemPosNewAnimLeft.left + "px",
@@ -18,7 +18,6 @@ function test(){
   });
   $("#navbarSupportedContent").on("click","li",function(e){
     $('#navbarSupportedContent ul li').removeClass("active");
-    $(this).addClass('active');
     var activeWidthNewAnimHeight = $(this).innerHeight();
     var activeWidthNewAnimWidth = $(this).innerWidth();
     var itemPosNewAnimTop = $(this).position();
