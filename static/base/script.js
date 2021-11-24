@@ -9,7 +9,7 @@ function test(){
   var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
   var itemPosNewAnimTop = activeItemNewAnim.position();
   var itemPosNewAnimLeft = activeItemNewAnim.position();
-  console.log(activeItemNewAnim);
+  console.log(activeItemNewAnim.position());
   $(".hori-selector").css({
     "top":itemPosNewAnimTop.top + "px", 
     "left":itemPosNewAnimLeft.left + "px",
@@ -31,11 +31,11 @@ function test(){
   });
 }
 $(document).ready(function(){
-  setTimeout(function(){ test(); });
+  setTimeout(function(){ test(); }, 50);
 });
 $(window).on('resize', function(){
-  setTimeout(function(){ test(); });
+  setTimeout(function(){ test(); }, 50);
 });
 $(".navbar-toggler").click(function(){
-  setTimeout(function(){ test(); });
+  setTimeout(function(){ test(); }, 50);
 })
